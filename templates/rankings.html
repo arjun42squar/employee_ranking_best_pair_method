@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Rankings</title>
+    <style>
+        .rankings-container {
+            margin: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .job-level-section {
+            margin-bottom: 30px;
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .ranking-item {
+            margin: 10px 0;
+            padding: 15px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        h2 {
+            color: #34495e;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            width: 200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .back-link:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Final Rankings</h1>
+    <div class="rankings-container">
+        {% if rankings %}
+            {% for job_level, ranked_employees in rankings.items() %}
+            <div class="job-level-section">
+                <h2>{{ job_level }} Level</h2>
+                {% for employee, points in ranked_employees %}
+                <div class="ranking-item">
+                    <strong>#{{ loop.index }}:</strong> 
+                    {{ employee }} ({{ points }} points)
+                </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No rankings available yet.</p>
+        {% endif %}
+    </div>
+    <a href="{{ url_for('index') }}" class="back-link">Start New Comparison</a>
+</body>
+</html>

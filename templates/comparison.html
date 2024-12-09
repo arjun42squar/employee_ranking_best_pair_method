@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Comparison</title>
+    <style>
+        .comparison-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px;
+        }
+        .employee-card {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 5px;
+            width: 300px;
+        }
+        .vs {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Compare Employees</h1>
+    <div class="comparison-container">
+        <form method="post">
+            <input type="hidden" name="job_level" value="{{ employee1.Job_Level }}">
+            <div class="employee-card">
+                <h3>{{ employee1.Employee }}</h3>
+                <p>Job Level: {{ employee1.Job_Level }}</p>
+                <p>Experience: {{ employee1.Experience }} years</p>
+                <p>Location: {{ employee1.Location }}</p>
+                <button type="submit" name="winner" value="{{ employee1.Employee }}">
+                    Select {{ employee1.Employee }}
+                </button>
+                <input type="hidden" name="loser" value="{{ employee2.Employee }}">
+            </div>
+            <div class="vs">VS</div>
+            <div class="employee-card">
+                <h3>{{ employee2.Employee }}</h3>
+                <p>Job Level: {{ employee2.Job_Level }}</p>
+                <p>Experience: {{ employee2.Experience }} years</p>
+                <p>Location: {{ employee2.Location }}</p>
+                <button type="submit" name="winner" value="{{ employee2.Employee }}">
+                    Select {{ employee2.Employee }}
+                </button>
+                <input type="hidden" name="loser" value="{{ employee1.Employee }}">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
